@@ -2,14 +2,11 @@ import Fretted.Basic
 import Fretted.LilyPond
 
 main = putStrLn $ out
-    where d4 = Pitch D 4
-          f4 = sharp $ Pitch F 5
+    where d3 = Pitch D 3
+          f4 = sharp $ Pitch F 4
           fret = standardGuitarFretboard
-          g1 = makeNoteGroup [(d4, 4), (f4, 3)]
-          g2 = makeNoteGroup [(sharp d4, 4), (sharp f4, 2)]
-          fmt = unlines $ map formatNoteGroup [g1, g2]
+          g1 = makeNoteGroup [(d3, 4), (f4, 2)]
+          g2 = fromFretPos fret [7, 9, 9, 8, 7, 7]
+          g3 = fromFretPos fret [0, 2, 2, 1, 0, 0]
+          fmt = unlines $ map formatNote [g1, g2, g3]
           out = singleVoiceFile fmt 120
-          --t = fromFretPos [(7,2,6), (10,8)]
-
-
-
