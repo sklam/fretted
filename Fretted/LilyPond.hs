@@ -28,9 +28,14 @@ singleVoiceFile voice tempo = unlines [voiceSection, scoreSection, versionSectio
         scoreSection = unwords [(command "score"), (curly scoreBody)]
         scoreBody = unlines [staffs, layout, midi]
         staffs = arrow $ unlines [tradStaff, tabStaff]
-        tradStaff = unwords [(command "new"), "Staff", (curly clef)]
-        clef = unwords [(command "clef"), (quote "treble_8"), (command "voice")]
-        tabStaff = unwords [(command "new"), "TabStaff", (curly (command "voice"))]
+        tradStaff = unwords [(command "new"), "Staff", (curly staffBody)]
+        staffBody = unlines [instrument, clef, (command "voice")]
+        instrument = unwords [(command "set"),
+                              (assign "Staff.midiInstrument"
+                                      "#\"acoustic guitar (nylon)\"")]
+        clef = unwords [(command "clef"), (quote "treble_8")]
+        tabStaff = unwords [(command "new"), "TabStaff", (curly tabBody)]
+        tabBody = unlines [instrument, (command "voice")]
         layout = concat [(command "layout"), (curly "")]
         midi = concat [(command "midi"), (curly tempoSection)]
         tempoSection = unwords [(command "tempo"), (assign "4" (show tempo))]
