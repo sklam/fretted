@@ -1,3 +1,6 @@
+__Warning: this is mostly for me to learn Haskell. Don't expect this ever becoming anything awesome.__
+
+
 fretted
 =======
 
@@ -9,3 +12,4 @@ $ cabal configure
 $ cabal build
 $ cabal run
 ```
+
